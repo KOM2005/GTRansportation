@@ -9,7 +9,7 @@ class Navigation extends Component {
         <h1>
           <ul>
             <li>
-              <a href="/">Clicky game</a>
+              <a href="/">chose Other options</a>
               </li>
             <li>{this.props.notification}</li>
             <li>Score: {this.props.score} | Top score: {this.props.topScore}</li>

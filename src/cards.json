@@ -1,0 +1,87 @@
+[
+    {
+      "id": 1,
+      "name": "Mickey",
+      "image": "./images/mickey.png",
+      "occupation": "Mouse",
+      "location": "Cartoons"
+    },
+    {
+      "id": 2,
+      "name": "Twitty Bird",
+      "image": "./images/twitty-bird.jpg",
+      "occupation": "Yellow Bird",
+      "location": "Cartoons"
+    },
+    {
+      "id": 3,
+      "name": "Tom and Jerry",
+      "image": "./images/tom-and-jerry.jpg",
+      "occupation": "Cat and Mouse",
+      "location": "Looney Tunes"
+    },
+    {
+      "id": 4,
+      "name": "Trump",
+      "image": "./images/trump.jpg",
+      "occupation": "President",
+      "location": "White House"
+    },
+    {
+      "id": 5,
+      "name": "Popeye",
+      "image": "./images/popeye.jpg",
+       "occupation": "the sailor",
+      "location": "See"
+    },
+    {
+      "id": 6,
+      "name": "Dora",
+      "image": "./images/dora.jpg",
+       "occupation": "Girl",
+      "location": "Disney"
+    },
+    {
+      "id": 7,
+      "name": "Bugs Bunny",
+      "image": "./images/bugs-bunny.png",
+      "occupation": "Looney Toon",
+      "location": "A Rabbit Burrow"
+    },
+    {
+      "id": 8,
+      "name": "Pinoccio",
+      "image": "./images/pinoccio.jpg",
+      "occupation": "Wooden Boy",
+      "location": "Italy"
+    },
+    {
+      "id": 9,
+      "name": "Dwarf",
+      "image": "./images/dwarf.jpg",
+      "occupation": "little man",
+      "location": "Woods"
+    },
+    {
+      "id": 10,
+      "name": "Mayya",
+      "image": "./images/mayya.jpg",
+      "occupation": "Bee",
+      "location": "Flowers"
+    },
+    {
+      "id": 11,
+      "name": "Pokemon",
+      "image": "./images/pokemon.png",
+      "occupation": "Hero",
+      "location": "Earth"
+    },
+    {
+      "id": 12,
+      "name": "Donald",
+      "image": "./images/donald-duck.jpg",
+      "occupation": "Duck",
+      "location": "Disney"
+    }
+  ]
+  

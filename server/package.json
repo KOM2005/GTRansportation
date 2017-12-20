@@ -1,5 +1,5 @@
 {
-  "name": "backend-server",
+  "name": "gtr_backend-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",

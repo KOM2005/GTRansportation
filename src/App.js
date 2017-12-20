@@ -28,6 +28,8 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.message2}
+
+        <h1>welcome</h1>
       </div>
     );
   }

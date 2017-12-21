@@ -5,9 +5,14 @@
   "dependencies": {
     "axios": "^0.17.1",
     "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "request-promise": "^4.2.2"
   },
   "proxy": "http://localhost:8080",
   "scripts": {

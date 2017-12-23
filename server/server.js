@@ -9,6 +9,8 @@ const app = express();
 // Facebook arguments
 const FACEBOOK_APP_ID = '464414910621154';
 const FACEBOOK_APP_SECRET = '22cfdadd7eeb8122954cd0934fea7fb3';
+// const FACEBOOK_APP_ID = '387373981675792';
+// const FACEBOOK_APP_SECRET = '015fd20849978192720467d47da5f8f4';
 // APP setup
 passport.use(new facebookStrategy({
     clientID: FACEBOOK_APP_ID,

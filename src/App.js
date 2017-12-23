@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navigation from './components/Navigation/Navigation.js';
 import Header from './components/Header/Header.js';
 import Content from './components/Content/Content.js';
+import Table from './components/Table/Table.js';
 import Footer from './components/Footer/Footer.js';
 
 class App extends Component {
@@ -27,9 +28,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.message2}
-
-        <h1>welcome</h1>
+        {/* <Header />
+        <Navigation /> */}
+        <Table />
+        <Footer />
       </div>
     );
   }

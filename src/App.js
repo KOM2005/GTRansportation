@@ -5,19 +5,19 @@ import Header from './components/Header/Header.js';
 import Content from './components/Content/Content.js';
 import Table from './components/Table/Table.js';
 import Footer from './components/Footer/Footer.js';
+import Register from './components/Register/Register.js';
+import User from './components/User/User.js';
 
 class App extends Component {
   state = {
-    message: 'no message',
-    message1: 'no message1',
-    message2: 'no message2'
+    users: []
   }
 
   componentDidMount() {
-    axios.get('/api/posts')
+    axios.get('/api/users')
       .then((response) => {
         console.log(response.data);
-        this.setState({ message: <pre>{JSON.stringify(response.data, null, 2)}</pre> });
+        this.setState({ users: response.data });
       })
       .catch((error) => {
         console.log(error);
@@ -29,9 +29,13 @@ class App extends Component {
     return (
       <div className="App">
         {/* <Header />
-        <Navigation /> */}
+        <Navigation />
         <Table />
-        <Footer />
+        <Footer /> */}
+        <Register />
+       
+        { this.state.users.map( (user) => {   return (<User userData={user}/>);  } ) }
+        
       </div>
     );
   }

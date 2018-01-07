@@ -58,26 +58,41 @@ module.exports = (app, passport) => {
         let newUser = new User();
         newUser.email = req.body.email;
         newUser.role = req.body.role;
+        newUser.companyName = req.body.companyName;
+        newUser.address = req.body.address;
+        newUser.phone = req.body.phone;
+        newUser.contactPerson = req.body.contactPerson;
         newUser.save()
           .then(() => {
               res.sendStatus(204);
           })
           .catch((err) => {
               console.log(err);
-              res.sendStatus(500);
+              res.status(500).send(err.message ? err.message : 'Internal server blowup');
           });
         
     });
 
-    app.get('/api/users', (req, res) => {
-        User.find({}, (err, users) => {
-            if (err) {
-                res.sendStatus(500);
-            }
-            res.send(users);
+    // app.get('/api/users', (req, res) => {
+    //     User.find({}, (err, users) => {
+    //         if (err) {
+    //             res.sendStatus(500);
+    //         }
+    //         res.send(users);
+    //     });
+    // });
+
+    app.get('/api/:email', (req, res) => {
+        // console.log('req.params:',req.params);
+        User.findOne({email: req.params.email})
+        .then( (user) => {
+            res.json( user);
+        })
+        .catch((err) => {
+			console.log(err);
+            res.status(500).send(err.message ? err.message : 'Internal server blowup');
         });
     });
-    
     
     app.get('/api/login', (req, res) => {
     

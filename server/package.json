@@ -1,5 +1,5 @@
 {
-  "name": "gtr_backend-server",
+  "name": "gtr-backend-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,10 +13,11 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "express-validator": "^4.3.0",
+    "mongoose": "^4.13.6",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2",
-    "mongoose": "^4.13.6"
+    "request-promise": "^4.2.2"
   }
 }

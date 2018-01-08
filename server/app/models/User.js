@@ -9,9 +9,24 @@ let UserSchema = new Schema({
         trim: true,
         required: true
     },
-
     role: {
         type:  Number,
+        required: true
+    },
+    companyName: {
+        type:  String,
+        required: true
+    },
+    address: {
+        type:  String,
+        required: true
+    },
+    phone: {
+        type:  String,
+        required: true
+    },
+    contactPerson: {
+        type:  String,
         required: true
     }
 

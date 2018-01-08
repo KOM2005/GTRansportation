@@ -1,44 +1,33 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Navigation from './components/Navigation/Navigation.js';
-import Header from './components/Header/Header.js';
-import Content from './components/Content/Content.js';
-import Table from './components/Table/Table.js';
-import Footer from './components/Footer/Footer.js';
-import Register from './components/Register/Register.js';
-import User from './components/User/User.js';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-class App extends Component {
-  state = {
-    users: []
-  }
+// import history from './helpers/history';
+// import { alertActions } from './_actions';
+import { PrivateRoute } from './components/PrivateRoute';
+// import HomePage from './pages/HomePage';
+import { LoginPage } from './pages/LoginPage';
+import { RegisterPage } from './pages/RegisterPage';
+import { BrokerPage}  from './pages/BrokerPage';
+import { DispatchPage } from './pages/DispatchPage';
 
-  componentDidMount() {
-    axios.get('/api/users')
-      .then((response) => {
-        console.log(response.data);
-        this.setState({ users: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+class App extends React.Component {
 
-
-  render() {
-    return (
-      <div className="App">
-        {/* <Header />
-        <Navigation />
-        <Table />
-        <Footer /> */}
-        <Register />
-       
-        { this.state.users.map( (user) => {   return (<User userData={user}/>);  } ) }
-        
-      </div>
-    );
-  }
+    render() {
+        return (
+            <Router >
+                <Switch>
+                    <Route exact path="/" component={PrivateRoute} />
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/register" component={RegisterPage} />
+                    <Route exact path="/broker" component={BrokerPage} />
+                    <Route exact path="/dispatch" component={DispatchPage} />
+                </Switch>
+            </Router>
+        );
+    }
 }
 
-export default App;
+
+const connectedApp = connect()(App);
+export { connectedApp as App }; 

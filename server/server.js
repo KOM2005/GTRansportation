@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
+});
 
 
 app.use(bodyParser.json());
@@ -38,14 +38,14 @@ mongoose.connect(configDB.url);
 require('./config/passport')(passport);
 
 
-app.use(session({
-    secret: 'ilikebeercoffeandalcohol',
-    resave: false,
-    saveUninitialized: false
-}));
+// app.use(session({
+//     secret: 'ilikebeercoffeandalcohol',
+//     resave: false,
+//     saveUninitialized: false
+// }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 require('./app/routes.js')(app, passport);
 

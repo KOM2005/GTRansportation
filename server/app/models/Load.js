@@ -5,9 +5,8 @@ let Schema = mongoose.Schema;
 let LoadSchema = new Schema({
 
     datePickUp: {
-        type: String,
-        trim: true,
-        required: true
+        type: Date,
+        default: Date.now
     },
     timePickUp: {
         type: String,
@@ -37,10 +36,22 @@ let LoadSchema = new Schema({
     comment: {
         type:  String,
         required: false
+    },
+    idStatus: {
+        type: Schema.Types.ObjectId,
+        ref: "Status"
+    },
+    idBroker: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    idDispatch: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 
 });
 
-let Load = mongoose.model('User', LoadSchema);
+let Load = mongoose.model('Load', LoadSchema);
 
 module.exports = Load;

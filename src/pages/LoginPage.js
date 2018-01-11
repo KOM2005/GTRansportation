@@ -6,6 +6,7 @@ import { OldSocialLogin as SocialLogin } from 'react-social-login'
 
 import { userActions } from '../actions';
 import styles from './styles/socialButtons.css';
+import { domain } from '../helpers/domain';
 
 class LoginPage extends React.Component {
 
@@ -20,7 +21,7 @@ class LoginPage extends React.Component {
 
         const { dispatch } = this.props;
         if (response._profile.email) {
-            axios.get('http://localhost:3001/api/'+response._profile.email)
+            axios.get(domain+'/api/users/'+response._profile.email)
             .then((response) => {
                 if (response.data) {
                     dispatch(userActions.login(response.data));

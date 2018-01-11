@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import axios from 'axios';
+import { domain } from '../helpers/domain';
+
 
 
 class RegisterPage extends React.Component {
@@ -26,7 +28,7 @@ class RegisterPage extends React.Component {
         const { name, value } = event.target;
         const { emailIsUsed } = this.state;
         if (value) {
-            axios.get('http://localhost:3001/api/'+value)
+            axios.get(domain+'/api/users/'+value)
                 .then((response) => {
                     response.data ? this.setState({ emailIsUsed: true }) : this.setState({ emailIsUsed: false });
                 })
@@ -40,12 +42,14 @@ class RegisterPage extends React.Component {
         // console.log(this.state);
         const { name, value } = event.target;
         const { user } = this.state;
+        // console.log(user);
         this.setState({
             user: {
                 ...user,
                 [name]: value
             }
         });
+        
     }
 
     handleSubmit = (event) => {
@@ -56,14 +60,14 @@ class RegisterPage extends React.Component {
         const { dispatch } = this.props;
         const filledFields = user.companyName && user.address && user.email && user.phone && user.contactPerson && user.role;
         if (filledFields && !emailIsUsed) {
-            axios.post('http://localhost:3001/api/createUser', user)
+            axios.post(domain+'/api/createUser', user)
               .then((response) => {
                 // console.log(response.data);
               })
               .catch((error) => {
                 console.log(error);
               });
-            this.props.history.push('/login'); 
+              this.context.router.push('/broker'); 
         }
     }
 

@@ -3,7 +3,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './helpers/store';
 import { App } from './App';
+// import { loadActions } from './actions';
 
+// store.dispatch(loadActions.getLoads());
 render(
     <Provider store={store}>
         <App />

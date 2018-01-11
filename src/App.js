@@ -8,7 +8,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 // import HomePage from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
-import { BrokerPage}  from './pages/BrokerPage';
+import BrokerPage  from './pages/BrokerPage';
 import { DispatchPage } from './pages/DispatchPage';
 
 class App extends React.Component {

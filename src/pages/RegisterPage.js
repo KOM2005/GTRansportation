@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import axios from 'axios';
 import { domain } from '../helpers/domain';
+// import default from '../components/AddItemForm';
 
 
 
@@ -67,7 +68,7 @@ class RegisterPage extends React.Component {
               .catch((error) => {
                 console.log(error);
               });
-              this.context.router.push('/broker'); 
+            this.props.history.push('/login'); 
         }
     }
 
@@ -147,5 +148,6 @@ class RegisterPage extends React.Component {
     }
 }
 
-const connectedRegisterPage = connect()(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
+// const connectedRegisterPage = connect()(RegisterPage);
+// export { connectedRegisterPage as RegisterPage };
+export default RegisterPage;

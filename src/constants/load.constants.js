@@ -5,7 +5,8 @@ export const loadConstants = {
 
         GET_STATUSES: "GET_STATUSES",
         GET_LOAD_TYPES: "GET_LOAD_TYPES",
-        ADD_LOAD: "ADD_LOAD"
+        ADD_LOAD: "ADD_LOAD",
+        GET_LOAD: "GET_LOAD"
 
         
     };

@@ -5,13 +5,15 @@ import Load from './Load';
 
 class LoadList extends React.Component{
 
-    constructor(props){
-        super(props);
-        this.state = {refresh: this.props.update} 
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {refresh: this.props.update} 
+    // }
 
     componentWillMount(){
         this.props.dispatch(loadActions.getLoads());
+        this.props.dispatch(loadActions.getStatuses());
+        this.props.dispatch(loadActions.getLoadTypes());
     }
     
     render() {

@@ -5,12 +5,21 @@ export const db = {
     getAll,
     getStatuses,
     getLoadTypes,
-    saveLoad
+    saveLoad,
+    getLoadById
 
 };
 
 function getAll() {
   return fetch(domain+'/api/loads').then(handleResponse);
+  // return axios.get(domain+'/api/loads')
+  // .then((response) => {
+  //   // return response;
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
+
 }
 
 function getStatuses() {
@@ -19,7 +28,7 @@ function getStatuses() {
 
 function getLoadTypes() {
 
-  return fetch(domain+'/api/loadTypes').then(handleResponse);
+  return fetch(`${domain}/api/loadTypes`).then(handleResponse);
   // return axios.get(domain+'/api/loadTypes')
   // .then((response) => {
   //   return response.json();
@@ -38,6 +47,19 @@ function saveLoad(load) {
       .catch((error) => {
         console.log(error);
       });
+}
+
+function getLoadById(id) {
+
+  return axios.get(`${domain}/api/loads/${id}`)
+  .then((response) => {
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  // return fetch(domain+'/api/loads/'+id).then(handleResponse);
 }
 
 

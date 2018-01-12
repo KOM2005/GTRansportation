@@ -1,3 +1,8 @@
 .social-button{
 
 }
+body{
+    background-image: url("../../images/trucking.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}

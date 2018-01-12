@@ -13,7 +13,7 @@ class DispatchPage extends React.Component {
             <div>
                 <Header />
                 <LoadList />
-                <AddItem />
+                {/* <AddItem /> */}
             </div>
         );
     }

@@ -16,6 +16,7 @@ const modalFormStyles = {
     //   border-radius
     }
   };
+  
 class AddItem extends React.Component {
 
     constructor(){

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { authentication } from './authentication';
 import { registration } from './registration';
-import { loads, statuses, loadTypes, addLoad } from './loads';
+import { loads, statuses, loadTypes, addLoad, load } from './loads';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   loads,
   statuses,
   loadTypes,
-  addLoad
+  addLoad,load
 });
 
 export default rootReducer;

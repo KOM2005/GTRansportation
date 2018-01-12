@@ -33,12 +33,26 @@ export function loadTypes(state = {data:[]}, action) {
 }
 
 export function addLoad(state = {}, action) {
+  // console.log('action', action);
   switch (action.type) {
     case loadConstants.ADD_LOAD:
+      return { data: action.load };
+    case loadConstants.EDIT_LOAD:
       return { data: action.load };
     default:
       return state
   }
 }
+
+export function load(state = {}, action) {
+  // console.log('action', action);
+  switch (action.type) {
+    case loadConstants.GET_LOAD:
+      return { data: action.load };
+    default:
+      return state
+  }
+}
+
 
 

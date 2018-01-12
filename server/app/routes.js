@@ -118,7 +118,7 @@ module.exports = (app, passport) => {
 
     // add new load
     app.post('/api/createLoad', (req, res) => {
-        console.log("newLoad:", req.body);
+        // console.log("newLoad:", req.body);
         let newLoad = new Load();
         newLoad.datePickUp = req.body.datePickUp;
         newLoad.timePickUp = req.body.timePickUp;
@@ -151,6 +151,35 @@ module.exports = (app, passport) => {
         })
         .catch((err) => {
 			// console.log(err);
+            res.status(500).send(err.message ? err.message : 'Internal server blowup');
+        });
+    });
+
+    // get load by id
+    app.get('/api/loads/:_id', (req, res) => {
+        console.log('req.params:',req.params._id);
+        Load.findOne({_id: req.params._id})
+        .populate('idStatus')
+        .populate('loadType')
+        .populate('idDispatch')
+        .then( (user) => {
+            res.json( user);
+        })
+        .catch((err) => {
+			console.log(err);
+            res.status(500).send(err.message ? err.message : 'Internal server blowup');
+        });
+    });
+
+    // editing load
+    app.post('/api/editLoad/:_id', (req, res) => {
+        console.log('req.params:',req.body);
+        Load.findOneAndUpdate({_id: req.params._id}, req.body)
+        .then( () => {
+            res.sendStatus(204);
+        })
+        .catch((err) => {
+			console.log(err);
             res.status(500).send(err.message ? err.message : 'Internal server blowup');
         });
     });

@@ -8,7 +8,9 @@ export const loadActions = {
     getLoads,
     getStatuses,
     getLoadTypes,
-    addLoad
+    addLoad,
+    getLoad,
+    editLoad
 
 };
 
@@ -17,6 +19,45 @@ function getLoads() {
         db.getAll()
         .then(
             loads => dispatch({ type: loadConstants.GET_LOADS_SUCCESS, loads })
+        )
+        // .then( () => dispatch(getStatuses))
+        // .then( () => dispatch(getLoadTypes));
+    };
+
+}
+
+function getLoad(id) {
+    return (dispatch) => {
+        db.getLoadById(id)
+        .then(
+            load => dispatch({ type: loadConstants.GET_LOAD, load })
+        )
+        // .then( () => dispatch(getStatuses))
+        // .then( () => dispatch(getLoadTypes));
+    };
+
+}
+
+function editLoad(id, load) {
+    return (dispatch) => {
+        db.editLoadById(id, load)
+        .then(
+            load => dispatch({ type: loadConstants.EDIT_LOAD, load })
+        )
+        .then( () =>
+            dispatch(getLoads())
+        );
+        // .then( () => dispatch(getStatuses))
+        // .then( () => dispatch(getLoadTypes));
+    };
+
+}
+
+function addLoad(load) {
+    return dispatch => {
+        db.saveLoad(load)
+        .then( () =>
+            dispatch(getLoads())
         );
     };
 
@@ -42,28 +83,20 @@ function getLoadTypes() {
 
 }
 
-function addLoad(load) {
-    return dispatch => {
-        db.saveLoad(load)
-        .then(
-            load => dispatch({ type: loadConstants.ADD_LOAD,  load })
-        );
-    };
-
-}
 
 
 
 
 
-function addLoad(load){
-    return dispatch => {
-        db.saveLoad(load)
-        .then(
-            load => dispatch({ type: loadConstants.ADD_LOAD, load })
-        )
 
-    }
-}
+// function addLoad(load){
+//     return dispatch => {
+//         db.saveLoad(load)
+//         .then(
+//             newLoad => dispatch({ type: loadConstants.ADD_LOAD, newLoad })
+//         )
+
+//     }
+// }
 
 

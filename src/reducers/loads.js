@@ -1,8 +1,5 @@
 import { loadConstants } from '../constants';
-import { loadActions } from '../actions/index';
-import { db } from '../helpers/db'; 
-
-
+// import { loadActions } from '../actions/index';
 
 export function loads(state = {data:[], isFetching: true}, action) {
   switch (action.type) {

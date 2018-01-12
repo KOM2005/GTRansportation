@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
 import axios from 'axios';
 import { domain } from '../helpers/domain';
-// import default from '../components/AddItemForm';
-
-
 
 class RegisterPage extends React.Component {
 
@@ -58,7 +53,7 @@ class RegisterPage extends React.Component {
         // console.log(this.props.history);
         
         const { user, emailIsUsed } = this.state;
-        const { dispatch } = this.props;
+        // const { dispatch } = this.props;
         const filledFields = user.companyName && user.address && user.email && user.phone && user.contactPerson && user.role;
         if (filledFields && !emailIsUsed) {
             axios.post(domain+'/api/createUser', user)
@@ -74,7 +69,7 @@ class RegisterPage extends React.Component {
 
     render() {
         // const { registering  } = this.props;
-        const { user, submitted, emailIsUsed } = this.state;
+        const { user, emailIsUsed } = this.state;
         // console.log(this.state);
         return (
             <div className="col-md-6 col-md-offset-3">

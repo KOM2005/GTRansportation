@@ -6,20 +6,12 @@ export const db = {
     getStatuses,
     getLoadTypes,
     saveLoad,
-    getLoadById
-
+    getLoadById,
+    editLoadById
 };
 
 function getAll() {
   return fetch(domain+'/api/loads').then(handleResponse);
-  // return axios.get(domain+'/api/loads')
-  // .then((response) => {
-  //   // return response;
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
-
 }
 
 function getStatuses() {
@@ -27,15 +19,7 @@ function getStatuses() {
 }
 
 function getLoadTypes() {
-
   return fetch(`${domain}/api/loadTypes`).then(handleResponse);
-  // return axios.get(domain+'/api/loadTypes')
-  // .then((response) => {
-  //   return response.json();
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
 }
 
 function saveLoad(load) {
@@ -48,6 +32,18 @@ function saveLoad(load) {
         console.log(error);
       });
 }
+
+
+function editLoadById(id, load) {
+  
+        return axios.post(`${domain}/api/editLoad/${id}`, load)
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
 
 function getLoadById(id) {
 

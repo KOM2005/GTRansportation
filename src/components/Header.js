@@ -1,9 +1,6 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
-// import {MenuItem,Nav,Navbar,NavItem} from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import HomePage from '../pages/HomePage';
+
 
 
 class Header1 extends React.Component{

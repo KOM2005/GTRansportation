@@ -9,7 +9,8 @@ export const loadActions = {
     getStatuses,
     getLoadTypes,
     addLoad,
-    getLoad
+    getLoad,
+    editLoad
 
 };
 
@@ -31,6 +32,21 @@ function getLoad(id) {
         .then(
             load => dispatch({ type: loadConstants.GET_LOAD, load })
         )
+        // .then( () => dispatch(getStatuses))
+        // .then( () => dispatch(getLoadTypes));
+    };
+
+}
+
+function editLoad(id, load) {
+    return (dispatch) => {
+        db.editLoadById(id, load)
+        .then(
+            load => dispatch({ type: loadConstants.EDIT_LOAD, load })
+        )
+        .then( () =>
+            dispatch(getLoads())
+        );
         // .then( () => dispatch(getStatuses))
         // .then( () => dispatch(getLoadTypes));
     };

@@ -171,6 +171,19 @@ module.exports = (app, passport) => {
         });
     });
 
+    // editing load
+    app.post('/api/editLoad/:_id', (req, res) => {
+        console.log('req.params:',req.body);
+        Load.findOneAndUpdate({_id: req.params._id}, req.body)
+        .then( () => {
+            res.sendStatus(204);
+        })
+        .catch((err) => {
+			console.log(err);
+            res.status(500).send(err.message ? err.message : 'Internal server blowup');
+        });
+    });
+
     // app.get('/api/login', (req, res) => {
     
     // });

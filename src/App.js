@@ -1,11 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-// import history from './helpers/history';
-// import { alertActions } from './_actions';
 import { PrivateRoute } from './components/PrivateRoute';
-// import HomePage from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import BrokerPage  from './pages/BrokerPage';

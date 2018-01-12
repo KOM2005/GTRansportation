@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import EditItemForm from '../components/EditItemForm';
-// import EditItemFormHelper from '../components/EditItemFormHelper';
 import styles from './styles/load.css'
 
 Modal.setAppElement('#root');
@@ -35,7 +34,7 @@ class Load extends React.Component{
 
     handleChangeItem = (e) => {
         this.handleOpenModal(e.currentTarget.id)
-        console.log('clicked:',e.currentTarget.id)
+        // console.log('clicked:',e.currentTarget.id)
     }
     render() {
         return (
@@ -47,7 +46,7 @@ class Load extends React.Component{
                     style={modalFormStyles}
                     contentLabel="Edit load modal window"
                 >
-                    <EditItemForm loadId={this.state.loadId}/>
+                    <EditItemForm loadId={this.state.loadId} cancelForm={this.handleCancelForm} updateList={this.handleUpdateList}/>
                     {/* <EditItemFormHelper loadId={this.state.loadId}/> */}
                 </Modal>
                 <table className="table">

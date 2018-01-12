@@ -37,6 +37,8 @@ export function addLoad(state = {}, action) {
   switch (action.type) {
     case loadConstants.ADD_LOAD:
       return { data: action.load };
+    case loadConstants.EDIT_LOAD:
+      return { data: action.load };
     default:
       return state
   }

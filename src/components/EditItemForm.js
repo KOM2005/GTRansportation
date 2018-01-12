@@ -33,20 +33,22 @@ class EditItemForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // const {load} = this.state
+        const {loadData} = this.state
+        const {loadId} = this.props
         // let dataCorrect = load.origin && load.destination;
 
-        // if (true) {
-        //     this.props.dispatch(loadActions.addLoad(this.state.load))
+        if (true) {
+            console.log('submit loadData:', loadData)
+            this.props.dispatch(loadActions.editLoad(loadId, loadData))
                     
-        //     this.props.updateList();
-        // }
-        // // this.props.history.push('/broker');
+            this.props.updateList();
+        }
+        // this.props.history.push('/broker');
     }
 
     handleCancel = (event) =>{
         event.preventDefault();
-        // this.props.cancelForm();
+        this.props.cancelForm();
     }
 
     // checkDate = (data) => { return data.match(/(\d{4})-(\d{2})-(\d{2})/) ? true : false }
@@ -54,8 +56,8 @@ class EditItemForm extends React.Component {
     render() {
         const { statuses, loadTypes, user, load } = this.props;
         const { loadData } = this.state;
-        console.log('render load:', load);
-        console.log('id load:', this.props.loadId);
+        // console.log('render load:', load);
+        // console.log('id load:', this.props.loadId);
         console.log('loadData', loadData)
 
         return (
@@ -119,7 +121,7 @@ class EditItemForm extends React.Component {
                     {/* lists */}
                     <div className="row">
                         <div className="col">
-                            <select className="custom-select" name="idStatus" value={this.state.loadData.idStatus} onChange={this.handleChange} >
+                            <select className="custom-select" name="idStatus" value={this.state.loadData.idStatus._id} onChange={this.handleChange} >
                                 <option value="">Choose status...</option>
                                 {statuses && statuses.data.map( (status, key) => {
                                     return  <option key={key} value={status._id}>{status.statusName}</option>
@@ -127,7 +129,7 @@ class EditItemForm extends React.Component {
                             </select>
                         </div>
                         <div className="col">
-                            <select className="custom-select" name="loadType" value={this.state.loadData.loadType} onChange={this.handleChange} >
+                            <select className="custom-select" name="loadType" value={this.state.loadData.loadType._id} onChange={this.handleChange} >
                             <option value="">Choose load type...</option>
                                 {loadTypes && loadTypes.data.map( (loadType, key) => {
                                     return  <option key={key} value={loadType._id}>{loadType.typeName}</option>

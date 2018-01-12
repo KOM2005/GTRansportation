@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { chain } from 'redux-chain'
 import { userActions, loadActions } from '../actions';
-// import { push } from 'react-router-redux';
 class AddItemForm extends React.Component {
 
     constructor(props){

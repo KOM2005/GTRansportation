@@ -2,6 +2,7 @@ const express = require('express');
 
 const Status = require('./app/models/Status');
 const LoadType = require('./app/models/LoadType');
+const Load = require('./app/models/Load');
 
 const app = express();
 
@@ -38,7 +39,11 @@ const configDB = require('./config/db.js');
 
 app.use(bodyParser.json());
 
-mongoose.connect(configDB.url, () => { Status.initStatus(Status); LoadType.initLoadType(LoadType) } );
+mongoose.connect(configDB.url, () => { 
+    Status.initStatus(Status); 
+    LoadType.initLoadType(LoadType) ;
+    Load.initLoad(Load);
+} );
 require('./config/passport')(passport);
 
 

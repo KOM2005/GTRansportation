@@ -52,6 +52,11 @@ let LoadSchema = new Schema({
 
 });
 
+LoadSchema.statics.initLoad = (Status) => {
+    
+        Load.remove({}, err =>{})
+    }
+
 let Load = mongoose.model('Load', LoadSchema);
 
 module.exports = Load;

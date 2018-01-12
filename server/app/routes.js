@@ -145,7 +145,7 @@ module.exports = (app, passport) => {
     // get all loads
     app.get('/api/allLoads', (req, res) => {
         // console.log('req.params:',req.params);
-        Load.find({}).populate("idStatus").populate("loadType").populate("idDispatch")
+        Load.find({}).populate("idStatus").populate("loadType").populate("idDispatch").populate("idBroker")
         .then( loads => {
             res.json(loads);
         })
@@ -163,6 +163,7 @@ module.exports = (app, passport) => {
         .populate('idStatus')
         .populate('loadType')
         .populate('idDispatch')
+        .populate("idBroker")
         .then( (loads) => {
             res.json( loads);
         })

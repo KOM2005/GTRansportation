@@ -66,7 +66,7 @@ class LoadDispatch extends React.Component{
                     <th scope="col">Weight</th>
                     <th scope="col">Price</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Dispatch</th>
+                    <th scope="col">Broker</th>
                     <th scope="col">Comment</th>
                 </tr>
                 {/* </div> */}
@@ -84,7 +84,7 @@ class LoadDispatch extends React.Component{
                             <td>{load.weight}</td>
                             <td>{load.price}</td>
                             <td>{load.idStatus.statusName}</td>
-                            <td>{load.idDispatch === null ? '' : load.idDispatch.contactPerson}</td>
+                            <td>{load.idBroker === null ? '' : load.idBroker.contactPerson}</td>
                             <td>{load.comment}</td>
                         </tr>
                         // </div>

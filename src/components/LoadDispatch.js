@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import EditItemForm from '../components/EditItemForm';
+import EditItemFormDispatch from '../components/EditItemFormDispatch';
 import styles from './styles/load.css'
 
 Modal.setAppElement('#root');
@@ -16,7 +16,7 @@ const modalFormStyles = {
     }
   };
 
-class Load extends React.Component{
+class LoadDispatch extends React.Component{
 
     constructor(props){
         super(props)
@@ -50,7 +50,7 @@ class Load extends React.Component{
                     style={modalFormStyles}
                     contentLabel="Edit load modal window"
                 >
-                    <EditItemForm loadId={this.state.loadId} cancelForm={this.handleCancelForm} updateList={this.handleUpdateList}/>
+                    <EditItemFormDispatch loadId={this.state.loadId} cancelForm={this.handleCancelForm} updateList={this.handleUpdateList}/>
                     {/* <EditItemFormHelper loadId={this.state.loadId}/> */}
                 </Modal>
                 <table className="table">
@@ -98,4 +98,4 @@ class Load extends React.Component{
     }
 }
 
-export default Load;
+export default LoadDispatch;

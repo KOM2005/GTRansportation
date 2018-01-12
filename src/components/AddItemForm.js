@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userActions, loadActions } from '../actions';
+import { loadActions } from '../actions';
 class AddItemForm extends React.Component {
 
     constructor(props){
@@ -30,7 +30,7 @@ class AddItemForm extends React.Component {
     handleChange = (event) => {
 
         const { name, value } = event.target;
-        console.log('name, value', name, value);
+        // console.log('name, value', name, value);
         // console.log(event.target);
         const { load } = this.state;
         this.setState({
@@ -42,17 +42,23 @@ class AddItemForm extends React.Component {
        
     }
 
+    checkDate = (data) =>  data.match(/(\d{4})-(\d{2})-(\d{2})/) ? true : false 
+    checkTime = (data) =>  data.match(/(\d{2}):(\d{2}) (\S\S)/) ? true : false 
+
     handleSubmit = (event) => {
         event.preventDefault();
-        const {load} = this.state
-        let dataCorrect = load.origin && load.destination;
-
-        if (true) {
-            this.props.dispatch(loadActions.addLoad(this.state.load))
-                    
+        const { load } = this.state
+        const { user } = this.props
+        const dataCorrect = this.checkDate(load.datePickUp) && 
+                            this.checkTime(load.timePickUp) &&
+                            load.origin.trim() && load.origin.trim() &&
+                            !isNaN(load.weight)  && !isNaN(load.price) &&
+                            load.idStatus && load.loadType ;
+        // console.log('submit ver:',dataCorrect)
+        if (dataCorrect) {
+            this.props.dispatch(loadActions.addLoad(load, user._id))
             this.props.updateList();
         }
-        // this.props.history.push('/broker');
     }
 
     handleCancel = (event) =>{
@@ -60,34 +66,35 @@ class AddItemForm extends React.Component {
         this.props.cancelForm();
     }
 
-    checkDate = (data) => { return data.match(/(\d{4})-(\d{2})-(\d{2})/) ? true : false }
+
 
     render() {
-        const { statuses, loadTypes, user } = this.props;
+        const { statuses, loadTypes } = this.props;
         const { load } = this.state;
-        // console.log('load:', this.state.load);
+        // console.log('weight:', !isNaN(load.weight) );
 
         return (
             <div >
+                
+                <h2>Add new load</h2> 
 
-                <h2>Add new load</h2>
-
-                <form>
+                <form className="was-validated">
 
                     <div className="row">
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="datePickUp">Pick up date</label>
-                                <input type="text" className={'form-control' + ( !load.datePickUp ? ' is-invalid' : '')} name="datePickUp" value={load.datePickUp} onChange={this.handleChange}/>
-                                { !this.checkDate(load.datePickUp) && 
-                                    <div className="invalid-feedback">Date should be YYYY-MM-DD</div> 
-                                }
+                                <input type="text" className={'form-control' + ( !this.checkDate(load.datePickUp) || !load.datePickUp ? ' is-invalid' : '')} name="datePickUp" value={load.datePickUp} onChange={this.handleChange}/>
+                                { (!this.checkDate(load.datePickUp) || load.datePickUp) &&
+                                     <div className="invalid-feedback">Date should be YYYY-MM-DD</div> }
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="timePickUp">Pick up time</label>
-                                <input type="text" className={'form-control' + ''} name="timePickUp" value={this.state.load.timePickUp} onChange={this.handleChange} />
+                                <input type="text" className={'form-control' + ( !this.checkTime(load.timePickUp) || !load.timePickUp ? ' is-invalid' : '')} name="timePickUp" value={this.state.load.timePickUp} onChange={this.handleChange} />
+                                { (!this.checkTime(load.timePickUp) || load.time) &&
+                                     <div className="invalid-feedback">Time should be HH:MM AM|PM</div> }
                             </div>
                         </div>
                     </div>
@@ -96,16 +103,15 @@ class AddItemForm extends React.Component {
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="origin">Origin</label>
-                                <input type="text" className={'form-control' + ( !load.origin ? ' is-invalid' : '')} name="origin" onChange={this.handleChange}/>
-                                {/* { !load.origin && 
-                                    <div className="invalid-feedback">Origin is required field</div> 
-                                } */}
+                                <input type="text" className={'form-control' + ( !load.origin.trim() ? ' is-invalid' : '')} name="origin" value={load.origin} onChange={this.handleChange}/>
+                                { !load.origin.trim() && <div className="invalid-feedback">Required field</div> }
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="destination">Destination</label>
-                                <input type="text" className={'form-control' + ''} name="destination" value={this.state.load.destination} onChange={this.handleChange}/>
+                                <input type="text" className={'form-control' + ( !load.destination.trim()  ? ' is-invalid' : '')} name="destination" value={load.destination} onChange={this.handleChange}/>
+                                { !load.destination.trim() &&  <div className="invalid-feedback">Required field</div> }
                             </div>
                         </div>
                     </div>
@@ -114,13 +120,17 @@ class AddItemForm extends React.Component {
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="weight">Weight</label>
-                                <input type="text" className={'form-control' + ''} name="weight" value={this.state.load.weight} onChange={this.handleChange}/>
+                                <input type="text" className={'form-control' + ( isNaN(load.weight) || !load.weight ? ' is-invalid' : '')} name="weight" value={load.weight} onChange={this.handleChange}/>
+                                { isNaN(load.weight) &&  <div className="invalid-feedback">Should be a number</div>  }
+                                { !load.weight && <div className="invalid-feedback">Required field</div> }
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="price">Price</label>
-                                <input type="text" className={'form-control' + ''} name="price" value={this.state.load.price} onChange={this.handleChange}/>
+                                <input type="text" className={'form-control' + ( isNaN(load.price) || !load.price ? ' is-invalid' : '')} name="price" value={load.price} onChange={this.handleChange}/>
+                                { isNaN(load.price) && <div className="invalid-feedback">Number is required</div> }
+                                { !load.price &&  <div className="invalid-feedback">Required field</div> }
                             </div>
                         </div>
                     </div>
@@ -128,22 +138,22 @@ class AddItemForm extends React.Component {
                     {/* lists */}
                     <div className="row">
                         <div className="col">
-                            <select className="custom-select" name="idStatus" value={this.state.load.idStatus} onChange={this.handleChange} >
+                            <select className="custom-select" name="idStatus" value={load.idStatus} onChange={this.handleChange} required>
                                 <option value="">Choose status...</option>
-                                {/* <option value="111">111</option>
-                                <option value="222">222</option> */}
                                 {statuses && statuses.data.map( (status, key) => {
                                     return  <option key={key} value={status._id}>{status.statusName}</option>
                                 })}
                             </select>
+                            { !load.idStatus && <div className="invalid-feedback">Status is required</div> }
                         </div>
                         <div className="col">
-                            <select className="custom-select" name="loadType" value={this.state.load.loadType} onChange={this.handleChange} >
+                            <select className="custom-select" name="loadType" value={load.loadType} onChange={this.handleChange} required>
                             <option value="">Choose load type...</option>
                                 {loadTypes && loadTypes.data.map( (loadType, key) => {
                                     return  <option key={key} value={loadType._id}>{loadType.typeName}</option>
                                 })}
                             </select>
+                            { !load.loadType && <div className="invalid-feedback">Load type is required</div> }
                         </div>
                     </div>
                      {/* end lists */}
@@ -152,7 +162,7 @@ class AddItemForm extends React.Component {
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="comment">Comment</label>
-                                <input type="text" className={'form-control' + ''} name="comment" value={this.state.load.comment} onChange={this.handleChange}/>
+                                <input type="text" className='form-control' name="comment" value={this.state.load.comment} onChange={this.handleChange}/>
                             </div>
                         </div>
                     </div>
@@ -162,7 +172,6 @@ class AddItemForm extends React.Component {
                             <div className="form-group">
                                 <button className="btn btn-primary" onClick={this.handleSubmit}>Save</button> {' '}
                                 <button className="btn btn-secondary" onClick={this.handleCancel}>Cancel</button>
-                                {/* <Link to="/login" className="btn btn-link">Cancel</Link> */}
                             </div>
                         </div>
                     </div>

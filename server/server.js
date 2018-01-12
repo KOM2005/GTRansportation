@@ -1,4 +1,8 @@
 const express = require('express');
+
+const Status = require('./app/models/Status');
+const LoadType = require('./app/models/LoadType');
+
 const app = express();
 
 const PORT = 3001;
@@ -34,7 +38,7 @@ const configDB = require('./config/db.js');
 
 app.use(bodyParser.json());
 
-mongoose.connect(configDB.url);
+mongoose.connect(configDB.url, () => { Status.initStatus(Status); LoadType.initLoadType(LoadType) } );
 require('./config/passport')(passport);
 
 

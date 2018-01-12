@@ -143,7 +143,7 @@ module.exports = (app, passport) => {
     }); 
 
     // get all loads
-    app.get('/api/loads', (req, res) => {
+    app.get('/api/allLoads', (req, res) => {
         // console.log('req.params:',req.params);
         Load.find({}).populate("idStatus").populate("loadType").populate("idDispatch")
         .then( loads => {
@@ -155,8 +155,24 @@ module.exports = (app, passport) => {
         });
     });
 
+
+    // get all loads by id
+    app.get('/api/loads/:idBroker', (req, res) => {
+        console.log('req.params:',req.params.idBroker);
+        Load.find({idBroker: req.params.idBroker})
+        .populate('idStatus')
+        .populate('loadType')
+        .populate('idDispatch')
+        .then( (loads) => {
+            res.json( loads);
+        })
+        .catch((err) => {
+			console.log(err);
+            res.status(500).send(err.message ? err.message : 'Internal server blowup');
+        });
+    });
     // get load by id
-    app.get('/api/loads/:_id', (req, res) => {
+    app.get('/api/load/:_id', (req, res) => {
         console.log('req.params:',req.params._id);
         Load.findOne({_id: req.params._id})
         .populate('idStatus')
@@ -171,7 +187,7 @@ module.exports = (app, passport) => {
         });
     });
 
-    // editing load
+    // editing load by broker
     app.post('/api/editLoad/:_id', (req, res) => {
         console.log('req.params:',req.body);
         Load.findOneAndUpdate({_id: req.params._id}, req.body)
@@ -180,6 +196,19 @@ module.exports = (app, passport) => {
         })
         .catch((err) => {
 			console.log(err);
+            res.status(500).send(err.message ? err.message : 'Internal server blowup');
+        });
+    });
+
+    // editing load by dispatch
+    app.post('/api/editStatus/:_id', (req, res) => {
+        console.log('req.params:',req.body);
+        Load.findOneAndUpdate({_id: req.params._id}, req.body)
+        .then( () => {
+            res.sendStatus(204);
+        })
+        .catch((err) => {
+            console.log(err);
             res.status(500).send(err.message ? err.message : 'Internal server blowup');
         });
     });
